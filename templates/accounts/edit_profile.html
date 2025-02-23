@@ -1,0 +1,92 @@
+
+{%  extends 'base.html' %}
+
+{% block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+	{% include 'includes/alerts.html' %}
+
+<div class="container">
+	<div class="row">
+	{% include 'includes/dashboard_sidebar.html' %}
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Modifier votre profile</strong>
+			
+		</header>
+		<div class="card-body">
+			<div class="row"> 
+				<div class="col-md-12">
+					<form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Nom</label>
+								{{user_form.nom}}
+							</div>
+							<div class="form-group col-md-6">
+								<label>Prenom</label>
+								{{user_form.prenom}}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Numero de Téléphone</label>
+                                {{user_form.phone_number}}
+							</div>
+							<div class="form-group col-md-6">
+								<label>Photo de profil</label>
+								{{profile_form.profile_picture}}
+							</div>
+						</div>
+
+						<div class="form-group">
+								<label>Adresse 1</label>
+								{{profile_form.address_line_1}}
+						</div>
+
+						<div class="form-group">
+								<label>Adresse 2</label>
+								{{profile_form.address_line_2}}
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label>Ville</label>
+								{{profile_form.city}}
+						</div>
+						<div class="form-group col-md-4">
+								<label>Etat</label>
+								{{profile_form.state}}
+						</div>
+						<div class="form-group col-md-4">
+								<label>Pays</label>
+								{{profile_form.country}}
+						</div>
+						</div>
+						
+						<input type="submit" value="Enrégistrer" class="btn btn-primary">						
+					</form>
+				
+				</div>
+
+				
+				
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+{% endblock %}

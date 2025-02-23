@@ -1,0 +1,103 @@
+</div> <!-- col.// -->
+<div class="col-md-3">
+    <div class="card card-product-grid">
+        <a href="./product-detail.html" class="img-wrap"> <img src=" {% static 'images/items/2.jpg' %}"> </a>
+        <figcaption class="info-wrap">
+            <a href="./product-detail.html" class="title">Some item name here</a>
+            <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
+        </figcaption>
+    </div>
+</div> <!-- col.// -->
+<div class="col-md-3">
+    <div class="card card-product-grid">
+        <a href="./product-detail.html" class="img-wrap"> <img src=" {% static 'images/items/3.jpg' %} "> </a>
+        <figcaption class="info-wrap">
+            <a href="./product-detail.html" class="title">Great product name here</a>
+            <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
+        </figcaption>
+    </div>
+</div> <!-- col.// -->
+<div class="col-md-3">
+    <div class="card card-product-grid">
+        <a href="./product-detail.html" class="img-wrap"> <img src=" {% static 'images/items/4.jpg' %} "> </a>
+        <figcaption class="info-wrap">
+            <a href="./product-detail.html" class="title">Just another product name</a>
+            <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+        </figcaption>
+    </div>
+</div> <!-- col.// -->
+<div class="col-md-3">
+    <div class="card card-product-grid">
+        <a href="./product-detail.html" class="img-wrap"> <img src=" {% static 'images/items/5.jpg' %} "> </a>
+        <figcaption class="info-wrap">
+            <a href="./product-detail.html" class="title">Just another product name</a>
+            <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+        </figcaption>
+    </div>
+</div> <!-- col.// -->
+<div class="col-md-3">
+    <div class="card card-product-grid">
+        <a href="./product-detail.html" class="img-wrap"> <img src=" {% static 'images/items/6.jpg' %} "> </a>
+        <figcaption class="info-wrap">
+            <a href="./product-detail.html" class="title">Some item name here</a>
+            <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
+        </figcaption>
+    </div>
+</div> <!-- col.// -->
+<div class="col-md-3">
+    <div class="card card-product-grid">
+        <a href="./product-detail.html" class="img-wrap"> <img src=" {% static 'images/items/7.jpg' %} "> </a>
+        <figcaption class="info-wrap">
+            <a href="./product-detail.html" class="title">Great product name here</a>
+            <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
+        </figcaption>
+    </div>
+</div> <!-- col.// -->
+<div class="col-md-3">
+    <div class="card card-product-grid">
+        <a href="./product-detail.html" class="img-wrap"> <img src=" {% static 'images/items/9.jpg' %} "> </a>
+        <figcaption class="info-wrap">
+            <a href="./product-detail.html" class="title">Just another product name</a>
+            <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+        </figcaption>
+    </div>
+</div> <!-- col.// -->
+</div> <!-- row.// -->
+
+
+'''def store(request, category_slug=None):
+    # Initialisation des variables
+    categories = None
+    products = None
+
+    if category_slug != None: # sid  le slud de la cateory !=None
+        categories = get_object_or_404(Category, slug=category_slug) # On obtient la category oou on renvoie une erreur de type 404
+        products = Product.objects.all().filter(category=categories,  is_available=True)# Onaffiffche les fichiers disponibles
+        product_count = products.count()
+    else:
+        products = Product.objects.all().filter(category=categories,  is_available=True)# Onaffiffche les fichiers disponibles
+        product_count = products.count()
+
+    context = {
+        'products':products,
+        'product_count':product_count
+    }
+    return render(request, 'store/store.html', context)'''
+
+          	<!--{% include 'includes/alerts.html' %}-->
+
+
+            <!--<div class="col-md-6">
+					<div class="card" style="text-align: center;">
+						<div class="card-body">
+							{% if userprofile.profile_picture.url == None %}
+							<img src="{% static './images/avatars/avatar.jpg' %}" alt="Avatar" width="50" height="50" style="border-radius: 50%;">
+
+							{% else %}
+								<img src="{{userprofile.profile_picture.url}}" alt="Avatar" width="50" height="50" style="border-radius: 50%;">
+							{% endif %}
+							<p class="mb-0">{{user.email}}</p>
+							<p>{{user.phone_number}}</p>
+						</div>
+					</div>
+				</div>-->

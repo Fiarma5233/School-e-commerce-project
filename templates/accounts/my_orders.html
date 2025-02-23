@@ -1,0 +1,63 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+	{% include 'includes/alerts.html' %}
+
+<div class="container">
+	<div class="row">
+	{% include 'includes/dashboard_sidebar.html' %}
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Connecté en tant que</strong>
+			<span>{{user.full_name}}</span>
+		</header>
+		<div class="card-body">
+			<div class="row"> 
+				<div class="col-md-12">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Commande</th>
+								<th scope="col">Addresse de Livraison</th>
+								<th scope="col">Téléphone</th>
+								<th scope="col">Commandes Totales</th>
+								<th scope="col">Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for order in orders %}
+							<tr>
+								<th scope="row"> <a href="{% url 'order_detail' order.order_number %}"> {{order.order_number}} </a> </th>
+								<th>{{order.full_name}}</th>
+								<th>{{order.phone}}</th>
+								<th>{{order.order_total}}</th>
+								<th>{{order.created_at}}</th>
+							</tr>
+							{% endfor %}
+						</tbody>
+						
+					</table>
+
+
+				</div>
+				
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+{% endblock %}

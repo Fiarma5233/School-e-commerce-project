@@ -1,0 +1,11 @@
+
+
+<!-- Ce fichier contient l'essentiel du message a envoyer -->
+{% autoescape off %}
+
+    Salut {{ user.nom }} {{ user.prenom }} 
+    S'il vous plait, cliquez sur le lien pour confirmer votre enregistrement
+    http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+    Si le mail suivant ne vous concerne pas, je vous prie de l'ignorer !!!
+{% endautoescape %}

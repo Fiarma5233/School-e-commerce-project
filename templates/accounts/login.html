@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+
+<!-- ============================ COMPONENT LOGIN   ================================= -->
+
+<!---On verifie d'abord qu'il a deja activer le com[te et on lui envoi ce jolie message]-->
+
+ {% if request.GET.command == 'verification' %}
+<div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 780px; margin-top: 100px;">
+  Merci de vous êtes enrégistré chez nous. Nous nous avons envoyé un mail de vérification à votre addresse [{{ request.GET.email }}]. S'il vous plaît vérifier.
+  <br><br>
+  Si déjà votre compte est déjà activer, vérifier ici <a href="{% url 'login' %"}>Connexion</a>
+</div>
+
+{% else %}
+
+
+	<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+      <div class="card-body">
+      <h4 class="card-title mb-4">Connexion</h4>
+      {% include 'includes/alerts.html' %}<!--Alerte pour lui dire qu'il s'est bien authentifier-->
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+			 <input type="email" class="form-control" placeholder="Adresse mail" name="email" >
+          </div> <!-- form-group// -->
+          <div class="form-group">
+			<input type="password" class="form-control" placeholder="Password" name="password">
+          </div> <!-- form-group// -->
+          
+          <div class="form-group">
+          	<a href="{% url 'forgotPassword' %}" class="float-right">Mot de passe oublié ?</a> 
+           
+          </div> <!-- form-group form-check .// -->
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block"> Connexion  </button>
+          </div> <!-- form-group// -->    
+      </form>
+      </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+     <p class="text-center mt-4">Vous n'avez pas encore de compte? <a href="{% url 'register' %}">S'enrégistrer</a></p>
+     <br><br>
+
+{% endif %}
+<!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}
