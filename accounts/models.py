@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.conf import settings
 
 
 class MyAccountManager(BaseUserManager):
@@ -86,16 +87,24 @@ class UserProfile(models.Model):
 	def full_address(self):
 		return f'{self.address_line_1} {self.address_line_2}'
 	
+	# def get_profile_picture_url(self):
+	# 	if self.profile_picture:
+	# 		return self.profile_picture.url
+	# 	else:
+	# 		# Remplacez 'default-avatar.jpg' par le nom de votre avatar par défaut
+	# 		#return '/static/images/avatars/avatar1.png'
+	# 		return 'media/avatars/default_image_pro.png'
+
+
+
+	#from django.conf import settings
+
+
 	def get_profile_picture_url(self):
 		if self.profile_picture:
 			return self.profile_picture.url
 		else:
-			# Remplacez 'default-avatar.jpg' par le nom de votre avatar par défaut
-			#return '/static/images/avatars/avatar1.png'
-			return 'media/avatars/default_image_pro.png'
-
-
-
+			return settings.MEDIA_URL + 'avatars/default_image_pro.png'
 
 
 

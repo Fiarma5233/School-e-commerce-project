@@ -19,6 +19,8 @@ from django.urls import path, include
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+
+
 urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path("fiarma/", admin.site.urls), # Chemin permettant d'aller vers le site administrateur
