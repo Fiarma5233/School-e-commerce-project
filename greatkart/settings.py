@@ -76,6 +76,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'django_session_timeout.middleware.SessionTimeoutMiddleware', #installer avec la commande pour la deconnexion automatique: pip install django-session-timeout
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Ajoutez cette ligne pour que render puisse prendre en compte les fichiers statics
+
 
 ]
 
@@ -85,6 +87,8 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True # on valide sa deconnexion
 SESSION_TIMEOUT_REDIRECT = '/accounts/login' # on  le redirige vers la page de connexion
 
 
+# Configuration pour WhiteNoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = "greatkart.urls"
 
 TEMPLATES = [
