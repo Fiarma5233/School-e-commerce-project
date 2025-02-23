@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 
 from django.utils.translation import gettext_lazy as _
+#from django.utils.translation import gettext_lazy as _
+
 
 # importer decouple afin de pouvoir appeler les variabkes secretes
 from decouple import config
@@ -60,7 +62,7 @@ INSTALLED_APPS = [
     "store",
     "carts",
     "orders",
-    'admin_honeypot', # installee avec la commande  :   pip install django-admin-honeypot
+    #'admin_honeypot', # installee avec la commande  :   pip install django-admin-honeypot
 
 
 ]

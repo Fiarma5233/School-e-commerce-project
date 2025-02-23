@@ -22,7 +22,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    #path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path("fiarma/", admin.site.urls), # Chemin permettant d'aller vers le site administrateur
     path('', views.home, name='home'),
     # Creation de notre chemin store
