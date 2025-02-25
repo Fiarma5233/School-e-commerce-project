@@ -38,6 +38,9 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# Lire le fichier .env
+env.read_env(os.path.join(BASE_DIR, '.env'))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -51,7 +54,7 @@ else:
     DEBUG = False
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+#DEBUG = config('DEBUG')
 
 #ALLOWED_HOSTS = ["AfriShop.pythonanywhere.com"]
 
@@ -102,18 +105,17 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True # on valide sa deconnexion
 SESSION_TIMEOUT_REDIRECT = '/accounts/login' # on  le redirige vers la page de connexion
 
 
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+# import cloudinary
+# import cloudinary.uploader
+# import cloudinary.api
 
-import os
+# import os
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-    'API_KEY': os.getenv('API_KEY'),
-    'API_SECRET': os.getenv('API_SECRET'),
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+#     'API_KEY': os.getenv('API_KEY'),
+#     'API_SECRET': os.getenv('API_SECRET'),
+# }
 
 # Configuration pour WhiteNoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -227,7 +229,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #cConfiguration des fichiers  media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+
+if ENVIRONMENT == "development":
+    MEDIA_ROOT = BASE_DIR /'media'
+else:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    CLOUDINARY_STORAGE = {
+        'CLOUDINARY_URL': env('CLOUDINARY_URL')
+    }
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -253,3 +263,5 @@ django.utils.encoding.force_text = force_str
 
 
 
+print("ENVIRONMENT:", ENVIRONMENT)
+print("SECRET_KEY:", SECRET_KEY)
