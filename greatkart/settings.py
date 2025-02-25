@@ -8,9 +8,14 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
-"""
+"""  
 
 from pathlib import Path
+from environ import Env
+env = Env()    
+Env.read_env()
+ENVIRONMENT=env('ENVIRONMENT', default="production")
+ENVIRONMENT = "production"
 import os
 
 from django.utils.translation import gettext_lazy as _
@@ -21,8 +26,7 @@ from django.utils.translation import gettext_lazy as _
 from decouple import config
 import dj_database_url
 
-# installer : pip install psycopg2
-
+# installer : pip install psycopg2  
 
 
 # il faut installer decouple avec la commande :     pip install python-decouple
@@ -38,7 +42,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+
+SECRET_KEY = env('SECRET_KEY')
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
@@ -55,14 +65,19 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages", # django permet de gerer les messages
+    "django.contrib.messages", # django permet de gerer les messages 
     "django.contrib.staticfiles",
     "category",
     "accounts",
     "store",
     "carts",
     "orders",
+    "cloudinary",
     #'admin_honeypot', # installee avec la commande  :   pip install django-admin-honeypot
+
+
+
+
 
 
 ]
