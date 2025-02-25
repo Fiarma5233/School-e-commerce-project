@@ -87,6 +87,17 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True # on valide sa deconnexion
 SESSION_TIMEOUT_REDIRECT = '/accounts/login' # on  le redirige vers la page de connexion
 
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dtkv3enkn',  # Remplacez par votre Cloud Name
+    'API_KEY': '927554469372167',  # Remplacez par votre API Key
+    'API_SECRET': 'cHsMXv39mLUC2RA4NgbbgAtpvm0',  # Remplacez par votre API Secret
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # Configuration pour WhiteNoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = "greatkart.urls"
