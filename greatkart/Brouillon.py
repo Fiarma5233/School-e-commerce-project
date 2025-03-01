@@ -177,7 +177,7 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = config('EMAIL_PORT')
+EMAAIL_PORT = config('EMAAIL_PORT')
 
 
 # CREATE DATABASE ecommerce;
@@ -285,13 +285,13 @@ django.utils.encoding.force_text = force_str
 # print("ENVIRONMENT:", ENVIRONMENT)
 # print("SECRET_KEY:", SECRET_KEY)
 
-# import cloudinary.api
+import cloudinary.api
 
-# # Remplace le nom du fichier par le public_id (sans l'extension)
-# public_id = "photos/products/SOME_Fiarma_Landry_Photo_Identite_p0PT6xd"
+# Remplace le nom du fichier par le public_id (sans l'extension)
+public_id = "photos/products/SOME_Fiarma_Landry_Photo_Identite_p0PT6xd"
 
-# try:
-#     result = cloudinary.api.resource(public_id)
-#     print("Image trouvée :", result["secure_url"])
-# except cloudinary.api.NotFound:
-#     print("L'image n'existe pas sur Cloudinary.")
+try:
+    result = cloudinary.api.resource(public_id)
+    print("Image trouvée :", result["secure_url"])
+except cloudinary.api.NotFound:
+    print("L'image n'existe pas sur Cloudinary.")
